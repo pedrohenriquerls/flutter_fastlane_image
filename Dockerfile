@@ -86,7 +86,7 @@ RUN gem install fastlane -N
 
 RUN git clone git@github.com:flutter/flutter.git /var/flutter
 RUN cd /var/flutter
-RUN git tag v1.7.8+hotfix.2
+RUN git tag 1.5.4-hotfix.2
 ENV PATH="$PATH:/var/flutter/bin"
 
 WORKDIR /var/mobile_app
