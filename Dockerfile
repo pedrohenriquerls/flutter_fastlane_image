@@ -83,10 +83,9 @@ RUN gem install bundler -N
 # Install fastlane which is used on Linux to build and deploy Android
 # builds to the Play Store.
 RUN gem install fastlane -N
-
-RUN git clone git@github.com:flutter/flutter.git /var/flutter
-RUN cd /var/flutter
-RUN git tag 1.5.4-hotfix.2
+RUN mkdir /var/flutter
+RUN git clone https://github.com/flutter/flutter.git /var/flutter
+RUN cd /var/flutter && git tag 1.5.4-hotfix.2
 ENV PATH="$PATH:/var/flutter/bin"
 
 WORKDIR /var/mobile_app
