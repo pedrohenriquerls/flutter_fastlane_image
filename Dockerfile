@@ -85,7 +85,8 @@ RUN gem install bundler -N
 RUN gem install fastlane -N
 RUN mkdir /var/flutter
 RUN git clone https://github.com/flutter/flutter.git /var/flutter
-RUN cd /var/flutter && git tag 1.5.4-hotfix.2
+RUN cd /var/flutter && git tag 1.7.11
 ENV PATH="$PATH:/var/flutter/bin"
+RUN flutter doctor
 
 WORKDIR /var/mobile_app
