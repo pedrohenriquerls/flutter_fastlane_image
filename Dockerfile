@@ -40,6 +40,7 @@ RUN mkdir -p ~/.android
 # Silence warning.
 RUN touch ~/.android/repositories.cfg
 ENV ANDROID_SDK_ARCHIVE="${ANDROID_TOOLS_ROOT}/archive"
+ENV ANDROID_HOME="${ANDROID_TOOLS_ROOT}"
 RUN wget --progress=dot:giga "${ANDROID_SDK_URL}" -O "${ANDROID_SDK_ARCHIVE}"
 RUN unzip -q -d "${ANDROID_TOOLS_ROOT}" "${ANDROID_SDK_ARCHIVE}"
 # Suppressing output of sdkmanager to keep log size down
@@ -83,9 +84,10 @@ RUN gem install bundler -N
 # Install fastlane which is used on Linux to build and deploy Android
 # builds to the Play Store.
 RUN gem install fastlane -N
+
 RUN mkdir /var/flutter
 RUN git clone https://github.com/flutter/flutter.git /var/flutter
-RUN cd /var/flutter && git tag 1.7.11
+RUN cd /var/flutter && git checkout v1.7.11
 ENV PATH="$PATH:/var/flutter/bin"
 RUN flutter doctor
 
