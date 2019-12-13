@@ -1,4 +1,5 @@
 FROM debian:stretch
+FROM ruby:2.5.1
 
 RUN apt-get update -y
 RUN apt-get upgrade -y
@@ -23,8 +24,6 @@ RUN bash "${NODEJS_INSTALL}/nodejs_install.sh"
 # Install the rest of the dependencies.
 RUN apt-get install -y --no-install-recommends \
   locales \
-  ruby \
-  ruby-dev \
   nodejs \
   lib32stdc++6 \
   libstdc++6 \
@@ -79,7 +78,6 @@ ENV LANG en_US.UTF-8
 # Install coveralls and Firebase
 # This is why we need ruby installed.
 # Skip all the documentation (-N) since it's just on CI.
-RUN gem install coveralls -N
 RUN gem install bundler -N
 # Install fastlane which is used on Linux to build and deploy Android
 # builds to the Play Store.
